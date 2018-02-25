@@ -1,15 +1,15 @@
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "rofi/version"
+require "fuzz/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "rofi"
-  spec.version       = Rofi::VERSION
+  spec.name          = "fuzz"
+  spec.version       = Fuzz::VERSION
   spec.authors       = ["Harry Schwartz"]
   spec.email         = ["hello@harryrschwartz.com"]
 
-  spec.summary       = %q{Wrap rofi to graphically select from a list of Ruby objects!}
-  spec.homepage      = "https://github.com/hrs/ruby-rofi"
+  spec.summary       = %q{Wrap command-line tools to graphically select from a list of Ruby objects!}
+  spec.homepage      = "https://github.com/hrs/fuzz"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.

@@ -1,7 +1,7 @@
 require "spec_helper"
 
-describe Rofi do
+describe Fuzz do
   it "has a version number" do
-    expect(Rofi::VERSION).not_to be nil
+    expect(Fuzz::VERSION).not_to be nil
   end
 end

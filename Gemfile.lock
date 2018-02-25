@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rofi (0.1.0)
+    fuzz (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -27,8 +27,8 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.16)
+  fuzz!
   rake (~> 10.0)
-  rofi!
   rspec (~> 3.0)
 
 BUNDLED WITH
