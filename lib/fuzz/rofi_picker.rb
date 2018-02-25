@@ -1,9 +1,7 @@
 class Fuzz::RofiPicker
-  def initialize
-    assert_executable_available
-  end
-
   def pick(keys)
+    assert_executable_available
+
     `echo "#{ keys.join("\n") }" | #{ command }`.strip
   end
 
