@@ -1,5 +1,7 @@
 ## Fuzz: interactively select Ruby objects with `rofi`
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
+
 I often write scripts in which a user needs to choose one of a number of
 possibilities: maybe they need to select a directory, or a file, or an action,
 or just an arbitrary object.
