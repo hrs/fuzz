@@ -2,7 +2,7 @@ require "fileutils"
 
 class Fuzz::Cache
   def initialize(cache_file)
-    @cache_file = cache_file
+    @cache_file = File.expand_path(cache_file)
     @entries = cache_entries(@cache_file)
   end
 
