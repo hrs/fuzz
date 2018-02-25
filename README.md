@@ -1,5 +1,8 @@
 ## Fuzz: interactively select Ruby objects with `rofi`
 
+[![Build Status](https://travis-ci.org/hrs/fuzz.svg?branch=master)](https://travis-ci.org/hrs/fuzz)
+[![Maintainability](https://api.codeclimate.com/v1/badges/326b820a889742177ec2/maintainability)](https://codeclimate.com/github/hrs/fuzz/maintainability)
+[![Coverage Status](https://coveralls.io/repos/github/hrs/fuzz/badge.svg?branch=master)](https://coveralls.io/github/hrs/fuzz?branch=master)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
 I often write scripts in which a user needs to choose one of a number of
