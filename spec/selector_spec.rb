@@ -20,14 +20,28 @@ describe Fuzz::Selector do
       expect(picker).to have_received(:pick)
     end
 
-    it "returns nil if no entry is selected" do
-      picker = double("picker", pick: nil)
-      selector = Fuzz::Selector.new(
-        [],
-        picker: picker,
-      )
+    context "no entry is selected" do
+      it "returns the default object" do
+        picker = double("picker", pick: nil)
+        default = double("default")
+        selector = Fuzz::Selector.new(
+          [],
+          default: default,
+          picker: picker,
+        )
 
-      expect(selector.pick).to be_nil
+        expect(selector.pick).to eq(default)
+      end
+
+      it "returns nil if no default is supplied" do
+        picker = double("picker", pick: nil)
+        selector = Fuzz::Selector.new(
+          [],
+          picker: picker,
+        )
+
+        expect(selector.pick).to be_nil
+      end
     end
 
     it "increments the chosen entry in the cache" do

@@ -6,6 +6,7 @@ require_relative "null_cache"
 class Fuzz::Selector
   def initialize(items, options = {})
     @cache = options.fetch(:cache, Fuzz::NullCache.new)
+    @default = options.fetch(:default, nil)
     @picker = options.fetch(:picker, Fuzz::RofiPicker.new)
     @entries = items.map { |item| make_entry(item, @cache) }
   end
@@ -15,7 +16,7 @@ class Fuzz::Selector
     chosen_entry = find_entry_by_title(title)
 
     if chosen_entry.nil?
-      nil
+      default
     else
       cache.increment!(chosen_entry.title)
       chosen_entry.object
@@ -24,7 +25,12 @@ class Fuzz::Selector
 
   private
 
-  attr_reader :entries, :picker, :cache
+  attr_reader(
+    :cache,
+    :default,
+    :entries,
+    :picker,
+  )
 
   def titles
     entries.sort.map(&:title)

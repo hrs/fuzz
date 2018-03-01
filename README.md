@@ -71,6 +71,21 @@ and it complies with the [XDG Base Directory Specification][], but you can keep
 
 [XDG Base Directory Specification]: https://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
 
+### Supplying a default value
+
+If the user enters a string that doesn't correspond to an object,
+`Fuzz::Selector#pick` will normally return `nil`.
+
+However, you can manually specify a default return value with the `default:`
+option:
+
+```ruby
+Fuzz::Selector.new(
+  [1, 2, 3],
+  default: 42,
+).pick # => returns 42 if the user picks a value other than 1, 2, or 3
+```
+
 ### Extending `fuzz` beyond `rofi`
 
 It's possible to use `fuzz` without `rofi`. The `Fuzz::Selector` constructor
