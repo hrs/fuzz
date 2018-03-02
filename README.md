@@ -1,4 +1,4 @@
-## Fuzz: interactively select Ruby objects with `rofi`
+## Fuzz: interactively select Ruby objects with `rofi` and `dmenu`
 
 [![Build Status](https://travis-ci.org/hrs/fuzz.svg?branch=master)](https://travis-ci.org/hrs/fuzz)
 [![Maintainability](https://api.codeclimate.com/v1/badges/326b820a889742177ec2/maintainability)](https://codeclimate.com/github/hrs/fuzz/maintainability)
@@ -9,16 +9,18 @@ I often write scripts in which a user needs to choose one of a number of
 possibilities: maybe they need to select a directory, or a file, or an action,
 or just an arbitrary object.
 
-[rofi][] is a really cool tool for that! It provides a visual way for a user to
-use fuzzy searching to choose among a selection of strings.
+[rofi][] and [dmenu][] are really cool tools for that! They provide a visual way
+for a user to use fuzzy searching to choose among a selection of strings.
 
-Unfortunately, though, it does *just* choose between strings. But my scripts
+Unfortunately, though, they do *just* choose between strings. But my scripts
 would often be a lot simpler if the user were able to select arbitrary Ruby
 objects. Fuzz manages the translation between lists of strings that can be
-selected through `rofi` and the associated collection of Ruby objects, and thus
-makes it a bit easier to write interactive and OOP-friendly Ruby scripts.
+selected through these visual pickers and the associated collection of Ruby
+objects, which makes it a bit easier to write interactive and OOP-friendly Ruby
+scripts.
 
 [rofi]: https://github.com/DaveDavenport/rofi
+[dmenu]: https://tools.suckless.org/dmenu
 
 ### For example
 
@@ -40,14 +42,14 @@ system("vlc \"#{ choice.path }\"")
 ```
 
 The call to `#pick` will call `#to_s` on every episode, display the results
-through `rofi`, get the user's choice, and use that to return the corresponding
-object.
+through `rofi` (the default picker), get the user's choice, and use that to
+return the corresponding object.
 
 [RubyTapas screencasts]: https://www.rubytapas.com/
 
 ### Caching selections
 
-If you run your script frequently, you may find that you often make the same
+If you run your script frequently you may find that you often make the same
 selections. It's convenient to have those selections appear near the top of the
 list.
 
@@ -86,11 +88,34 @@ Fuzz::Selector.new(
 ).pick # => returns 42 if the user picks a value other than 1, 2, or 3
 ```
 
-### Extending `fuzz` beyond `rofi`
+### Choosing a different picker
 
-It's possible to use `fuzz` without `rofi`. The `Fuzz::Selector` constructor
-takes an optional `:picker` argument. The supplied object must implement a
-`#pick` method, which should take an array of strings and return a string.
+Fuzz ships with support for `rofi` and `dmenu`. The `Fuzz::Selector` constructor
+takes an optional `picker:` argument to pick a picker.
+
+For example, to use `dmenu` as your picker:
+
+```ruby
+Fuzz::Selector.new(
+  some_objects,
+  picker: Fuzz::DmenuPicker.new,
+)
+```
+
+The `rofi` picker is the default, but you can also explicitly specify it:
+
+```ruby
+Fuzz::Selector.new(
+  some_objects,
+  picker: Fuzz::RofiPicker.new,
+)
+```
+
+### Extending `fuzz` with new pickers
+
+It's possible to extend `fuzz` to use a picker of your choice. The object
+supplied to `picker:` must implement a `#pick` method, which should take an
+array of strings and return a string.
 
 Here's a simple example with a silly picker that always chooses the first
 option:
