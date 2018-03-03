@@ -53,7 +53,7 @@ describe Fuzz::Selector do
         to_s: title,
       )
       picker = spy("picker", pick: title)
-      cache = spy("cache", :"increment!" => nil)
+      cache = spy("cache", increment: nil)
       selector = Fuzz::Selector.new(
         [entry],
         cache: cache,
@@ -62,7 +62,7 @@ describe Fuzz::Selector do
 
       selector.pick
 
-      expect(cache).to have_received(:increment!).with(title)
+      expect(cache).to have_received(:increment).with(title)
     end
   end
 end
