@@ -1,4 +1,4 @@
-## Fuzz: interactively select Ruby objects with `rofi` and `dmenu`
+## Fuzz: interactively select Ruby objects with `rofi`, `dmenu`, or `pick`
 
 [![Build Status](https://travis-ci.org/hrs/fuzz.svg?branch=master)](https://travis-ci.org/hrs/fuzz)
 [![Maintainability](https://api.codeclimate.com/v1/badges/326b820a889742177ec2/maintainability)](https://codeclimate.com/github/hrs/fuzz/maintainability)
@@ -11,16 +11,18 @@ or just an arbitrary object.
 
 [rofi][] and [dmenu][] are really cool tools for that! They provide a visual way
 for a user to use fuzzy searching to choose among a selection of strings.
+[pick][] provides a similar service on the command line with ncurses.
 
-Unfortunately, though, they do *just* choose between strings. But my scripts
-would often be a lot simpler if the user were able to select arbitrary Ruby
-objects. Fuzz manages the translation between lists of strings that can be
+Unfortunately, though, these tools do *just* choose between strings. But my
+scripts would often be a lot simpler if the user were able to select arbitrary
+Ruby objects. Fuzz manages the translation between lists of strings that can be
 selected through these visual pickers and the associated collection of Ruby
 objects, which makes it a bit easier to write interactive and OOP-friendly Ruby
 scripts.
 
 [rofi]: https://github.com/DaveDavenport/rofi
 [dmenu]: https://tools.suckless.org/dmenu
+[pick]: https://github.com/calleerlandsson/pick
 
 ### For example
 
@@ -102,6 +104,16 @@ Fuzz::Selector.new(
 )
 ```
 
+Or to search in a terminal with the `pick` tool:
+
+```ruby
+
+Fuzz::Selector.new(
+  some_objects,
+  picker: Fuzz::PickPicker.new,
+)
+```
+
 The `rofi` picker is the default, but you can also explicitly specify it:
 
 ```ruby
@@ -138,11 +150,7 @@ selector = Fuzz::Selector.new(
 selector.pick # => 1
 ```
 
-Pickers will usually be more interactive than this, I hope! You might shell out
-to [dmenu][], [pick][], or whatever else you'd like.
-
-[dmenu]: https://wiki.archlinux.org/index.php/Dmenu
-[pick]: https://github.com/calleerlandsson/pick
+Your custom pickers will probably be more interactive than this! =)
 
 ## Installation
 

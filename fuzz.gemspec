@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.version = Fuzz::VERSION
   spec.authors = ["Harry Schwartz"]
   spec.email = ["hello@harryrschwartz.com"]
-  spec.summary = "Wrap command-line tools to graphically select from a list of Ruby objects!"
+  spec.summary = "Use command-line tools to choose from a list of Ruby objects!"
   spec.homepage = "https://github.com/hrs/fuzz"
   spec.license = "GPL-3.0"
 
