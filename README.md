@@ -26,6 +26,11 @@ scripts.
 
 ### For example
 
+There are more [interesting examples in the wiki][], but here's a simple one to
+get started.
+
+[interesting examples in the wiki]: https://github.com/hrs/fuzz/wiki
+
 I'm a fan of the excellent [RubyTapas screencasts][], and I'd like a script to
 let me interactively search through their titles to pick one to play. Here's a
 way I could do that:
