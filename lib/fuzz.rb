@@ -1,6 +1,7 @@
 module Fuzz
 end
 
+require "fuzz/executable"
 require "fuzz/cache"
 require "fuzz/dmenu_picker"
 require "fuzz/entry"

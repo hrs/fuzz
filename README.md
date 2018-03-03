@@ -111,6 +111,9 @@ Fuzz::Selector.new(
 )
 ```
 
+If your chosen picker can't be found (perhaps it's not installed, or not in your
+`$PATH`), `Fuzz::Selector#pick` will raise a `Fuzz::MissingExecutableError`.
+
 ### Extending `fuzz` with new pickers
 
 It's possible to extend `fuzz` to use a picker of your choice. The object

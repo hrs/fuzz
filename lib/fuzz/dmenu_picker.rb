@@ -1,24 +1,9 @@
-class Fuzz::DmenuPicker
-  def pick(keys)
-    assert_executable_available
+module Fuzz
+  class DmenuPicker
+    def pick(keys)
+      Fuzz::Executable.new("dmenu").error_if_missing
 
-    `echo "#{ keys.join("\n") }" | #{ command }`.strip
-  end
-
-  private
-
-  def command
-    "dmenu -i"
-  end
-
-  def assert_executable_available
-    if !installed?
-      raise "Can't find the `dmenu` executable!"
+      `echo "#{ keys.join("\n") }" | dmenu -i`.strip
     end
-  end
-
-  def installed?
-    `which dmenu`
-    $?.success?
   end
 end
