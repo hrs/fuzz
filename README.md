@@ -1,4 +1,4 @@
-## Fuzz: interactively select Ruby objects with `rofi`, `dmenu`, or `pick`
+## Fuzz: A Ruby wrapper around interactive filtering tools
 
 [![Build Status](https://travis-ci.org/hrs/fuzz.svg?branch=master)](https://travis-ci.org/hrs/fuzz)
 [![Maintainability](https://api.codeclimate.com/v1/badges/326b820a889742177ec2/maintainability)](https://codeclimate.com/github/hrs/fuzz/maintainability)
@@ -11,7 +11,7 @@ or just an arbitrary object.
 
 [rofi][] and [dmenu][] are really cool tools for that! They provide a visual way
 for a user to use fuzzy searching to choose among a selection of strings.
-[pick][] provides a similar service on the command line with ncurses.
+[pick][] and [peco][] provide similar services on the command line with ncurses.
 
 Unfortunately, though, these tools do *just* choose between strings. But my
 scripts would often be a lot simpler if the user were able to select arbitrary
@@ -23,6 +23,7 @@ scripts.
 [rofi]: https://github.com/DaveDavenport/rofi
 [dmenu]: https://tools.suckless.org/dmenu
 [pick]: https://github.com/calleerlandsson/pick
+[peco]: https://github.com/peco/peco
 
 ### For example
 
@@ -116,6 +117,16 @@ Or to search in a terminal with the `pick` tool:
 Fuzz::Selector.new(
   some_objects,
   picker: Fuzz::PickPicker.new,
+)
+```
+
+Or with `peco`:
+
+```ruby
+
+Fuzz::Selector.new(
+  some_objects,
+  picker: Fuzz::PecoPicker.new,
 )
 ```
 
