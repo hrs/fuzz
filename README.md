@@ -11,7 +11,7 @@ or just an arbitrary object.
 
 [rofi][] and [dmenu][] are really cool tools for that! They provide a visual way
 for a user to use fuzzy searching to choose among a selection of strings.
-[pick][] and [peco][] provide similar services on the command line with ncurses.
+[pick][], [peco][], and [selecta][] provide similar services on the command line.
 
 Unfortunately, though, these tools do *just* choose between strings. But my
 scripts would often be a lot simpler if the user were able to select arbitrary
@@ -24,6 +24,7 @@ scripts.
 [dmenu]: https://tools.suckless.org/dmenu
 [pick]: https://github.com/calleerlandsson/pick
 [peco]: https://github.com/peco/peco
+[selecta]: https://github.com/garybernhardt/selecta
 
 ### For example
 
@@ -98,8 +99,17 @@ Fuzz::Selector.new(
 
 ### Choosing a different picker
 
-Fuzz ships with support for `rofi` and `dmenu`. The `Fuzz::Selector` constructor
-takes an optional `picker:` argument to pick a picker.
+Fuzz ships with support for numerous fuzzy-matching tools, which it calls
+"pickers." The `Fuzz::Selector` constructor takes an optional `picker:` argument
+to pick a picker.
+
+| Executable | Creating an instance             |
+|------------|----------------------------------|
+| `dmenu`    | `Fuzz::DmenuPicker.new`          |
+| `peco`     | `Fuzz::PecoPicker.new`           |
+| `pick`     | `Fuzz::PickPicker.new`           |
+| `rofi`     | `Fuzz::RofiPicker.new` (default) |
+| `selecta`  | `Fuzz::SelectaPicker.new`        |
 
 For example, to use `dmenu` as your picker:
 
@@ -110,37 +120,9 @@ Fuzz::Selector.new(
 )
 ```
 
-Or to search in a terminal with the `pick` tool:
-
-```ruby
-
-Fuzz::Selector.new(
-  some_objects,
-  picker: Fuzz::PickPicker.new,
-)
-```
-
-Or with `peco`:
-
-```ruby
-
-Fuzz::Selector.new(
-  some_objects,
-  picker: Fuzz::PecoPicker.new,
-)
-```
-
-The `rofi` picker is the default, but you can also explicitly specify it:
-
-```ruby
-Fuzz::Selector.new(
-  some_objects,
-  picker: Fuzz::RofiPicker.new,
-)
-```
-
-If your chosen picker can't be found (perhaps it's not installed, or not in your
-`$PATH`), `Fuzz::Selector#pick` will raise a `Fuzz::MissingExecutableError`.
+If the executable associated with your chosen picker can't be found (perhaps
+it's not installed, or not in your `$PATH`), `Fuzz::Selector#pick` will raise a
+`Fuzz::MissingExecutableError`.
 
 ### Extending `fuzz` with new pickers
 
