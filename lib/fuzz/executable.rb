@@ -21,7 +21,7 @@ module Fuzz
     attr_reader :command
 
     def installed?
-      system("which #{ command }")
+      system("which #{ command } > /dev/null 2>&1")
       $?.success?
     end
   end
